@@ -28,9 +28,9 @@ class RedisResolverBackend(client.Resolver):
         
     def lookupAddress(self, name, timeout = None):
         return self._get_ip_addr(name, timeout)
-       
+
 def create_application():
-    rd = txredisapi.lazyRedisConnectionPool()
+    rd = txredisapi.lazyConnectionPool()
     redisBackend = RedisResolverBackend(rd, servers=[('8.8.8.8', 53)])
 
     application = service.Application("txdnsredis")
